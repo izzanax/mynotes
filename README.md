@@ -5,10 +5,16 @@
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
 <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
 
+<br>
+
 # 📝 MyNotes
 
-**Aplikasi web sederhana berbasis Laravel untuk mengelola catatan dan tugas harian.**  
-Modern · Responsif · Personal
+**Satu aplikasi untuk semua kebutuhanmu — catat ide, kelola tugas, pantau progress.**
+Modern · Personal · Dibangun dengan Laravel
+
+<br>
+
+<img src="screenshots/landing.png" alt="MyNotes Landing Page" width="800">
 
 </div>
 
@@ -17,36 +23,66 @@ Modern · Responsif · Personal
 ## ✨ Fitur Utama
 
 | Modul | Fitur |
-|-------|-------|
-| 📒 **Catatan** | Tambah, edit, hapus catatan · Pencarian berdasarkan judul/isi · Daftar catatan terbaru |
-| ✅ **Tugas** | Tambah, edit, hapus tugas · Status: Pending / In Progress / Selesai · Filter status · Deadline opsional |
-| 📊 **Dashboard** | Statistik total catatan & tugas · Progress penyelesaian · Ringkasan terbaru |
-| 👤 **Autentikasi** | Registrasi & login · Logout · Data terpisah per pengguna |
+|---|---|
+| 📒 **Catatan** | CRUD lengkap · 8 pilihan warna catatan · Editor rich text (bold, italic, underline, list, link) · Pencarian judul/isi · **Riwayat perubahan catatan** |
+| ✅ **Tugas** | CRUD lengkap · Status Tertunda / Sedang Berjalan / Selesai · Filter status · Deadline dengan indikator otomatis · Tandai selesai sekali klik |
+| 📊 **Dashboard** | Statistik catatan & tugas real-time · Progress bar penyelesaian tugas · Daftar aktivitas terbaru |
+| 🔐 **Autentikasi** | Login & registrasi dengan tampilan kustom · Proteksi data antar pengguna · Logout aman |
 
 ---
 
 ## 🖼️ Tampilan Aplikasi
 
-| Dashboard | Catatan | Tugas |
-|-----------|---------|-------|
-| ![Dashboard](screenshots/dashboard.png) | ![Catatan](screenshots/catatan.png) | ![Tugas](screenshots/tugas.png) |
+<div align="center">
 
-> Lihat juga: [Form Tambah Catatan](screenshots/tambah-catatan.png) · [Form Tambah Tugas](screenshots/tambah-tugas.png)
+| Login | Register |
+|:---:|:---:|
+| <img src="screenshots/login.png" width="380"> | <img src="screenshots/register.png" width="380"> |
+
+| Dashboard |
+|:---:|
+| <img src="screenshots/dashboard.png" width="800"> |
+
+| Catatan Saya | Tugas Saya |
+|:---:|:---:|
+| <img src="screenshots/catatan.png" width="380"> | <img src="screenshots/tugas.png" width="380"> |
+
+| Buat Catatan | Riwayat Catatan |
+|:---:|:---:|
+| <img src="screenshots/buat-catatan.png" width="380"> | <img src="screenshots/riwayat-catatan.png" width="380"> |
+
+</div>
+
+---
+
+## 🆕 Yang Baru
+
+- 🎨 **Warna Catatan** — bedakan catatan dengan 8 pilihan warna latar belakang
+- ✍️ **Rich Text Editor** — format teks dengan bold, italic, underline, strikethrough, link, dan list
+- 🕓 **Riwayat Perubahan** — setiap edit catatan otomatis tersimpan, bisa dilihat kapan saja
+- 💜 **Tampilan Auth Kustom** — halaman login & register bertema ungu MyNotes, bukan lagi default Laravel
 
 ---
 
 ## 🛠️ Teknologi
 
-- **Framework** — Laravel (PHP)
-- **Database** — MySQL
-- **Frontend** — Bootstrap 5 · Blade Template Engine · Font Awesome
+| Layer | Stack |
+|---|---|
+| Backend | Laravel 11 (PHP 8.x) |
+| Database | MySQL |
+| Frontend | Bootstrap 5 · Blade Template Engine |
+| Editor | Quill.js (Rich Text Editor) |
+| Tanggal | Carbon |
 
 ---
 
 ## 📦 Instalasi
 
 ### Prasyarat
-Pastikan sudah terinstall: `PHP >= 8.x`, `Composer`, `MySQL`
+
+```
+PHP >= 8.2     Composer     MySQL     Node.js >= 20
+```
 
 ### Langkah-langkah
 
@@ -56,24 +92,19 @@ git clone https://github.com/username/mynotes.git
 cd mynotes
 ```
 
-**2. Install dependency**
+**2. Install dependency PHP & JS**
 ```bash
 composer install
+npm install
 ```
 
 **3. Salin file environment**
 ```bash
 cp .env.example .env
-```
-
-**4. Generate application key**
-```bash
 php artisan key:generate
 ```
 
-**5. Konfigurasi database**
-
-Edit file `.env`:
+**4. Konfigurasi database** — edit file `.env`:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -83,42 +114,51 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**6. Jalankan migrasi**
+**5. Jalankan migrasi**
 ```bash
 php artisan migrate
 ```
 
-**7. Jalankan server**
+**6. Build asset & jalankan server**
 ```bash
+npm run build
 php artisan serve
 ```
 
-Akses aplikasi di: **http://127.0.0.1:8000**
+Buka aplikasi di **http://127.0.0.1:8000** 🎉
 
 ---
 
-## 🚀 Penggunaan
+## 🚀 Cara Penggunaan
 
 <details>
-<summary><strong>📒 Membuat Catatan</strong></summary>
+<summary><strong>📒 Membuat & Mengedit Catatan</strong></summary>
 
 1. Login ke aplikasi
-2. Klik menu **Catatan**
-3. Klik **Buat Catatan**
-4. Isi judul dan isi catatan
-5. Klik **Simpan Catatan**
+2. Klik menu **Catatan** → **Buat Catatan**
+3. Isi judul, pilih warna catatan, tulis isi menggunakan editor
+4. Klik **Simpan Catatan**
+5. Setiap kali catatan diedit, versi sebelumnya otomatis tersimpan ke **Riwayat**
 
 </details>
 
 <details>
-<summary><strong>✅ Membuat Tugas</strong></summary>
+<summary><strong>🕓 Melihat Riwayat Catatan</strong></summary>
 
-1. Klik menu **Tugas**
-2. Klik **Tambah Tugas**
-3. Isi nama tugas
-4. Pilih status tugas
-5. Tentukan deadline *(opsional)*
-6. Klik **Simpan Tugas**
+1. Buka detail catatan yang sudah pernah diedit
+2. Klik tombol **Riwayat**
+3. Lihat seluruh versi lama catatan dalam tampilan accordion
+
+</details>
+
+<details>
+<summary><strong>✅ Mengelola Tugas</strong></summary>
+
+1. Klik menu **Tugas** → **Tambah Tugas**
+2. Isi nama tugas, deskripsi (opsional), deadline (opsional), dan status
+3. Klik **Simpan Tugas**
+4. Gunakan tombol **Selesai** untuk menandai tugas selesai dengan cepat
+5. Gunakan filter status untuk menyaring daftar tugas
 
 </details>
 
@@ -130,6 +170,7 @@ Akses aplikasi di: **http://127.0.0.1:8000**
 app/
 ├── Models/
 │   ├── Note.php
+│   ├── NoteHistory.php
 │   ├── Task.php
 │   └── User.php
 │
@@ -139,11 +180,37 @@ app/
     └── TaskController.php
 
 resources/views/
-├── dashboard/
+├── dashboard.blade.php
 ├── notes/
+│   ├── index.blade.php
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── show.blade.php
+│   └── history.blade.php
 ├── tasks/
+├── auth/
+│   ├── login.blade.php
+│   └── register.blade.php
 └── layouts/
+    ├── app.blade.php
+    └── guest.blade.php
 ```
+
+---
+
+## 🗄️ Skema Database
+
+```
+users ──┬──< notes ──< note_histories
+        └──< tasks
+```
+
+| Tabel | Keterangan |
+|---|---|
+| `users` | Data akun pengguna |
+| `notes` | Catatan pengguna (judul, isi HTML, warna) |
+| `note_histories` | Riwayat versi lama tiap catatan |
+| `tasks` | Tugas pengguna (judul, deskripsi, deadline, status) |
 
 ---
 
@@ -152,22 +219,38 @@ resources/views/
 Project ini dibuat sebagai implementasi nyata dari:
 
 - ✅ Laravel MVC Architecture
-- ✅ Authentication (Login, Register, Logout)
+- ✅ Authentication & Authorization (ownership check)
 - ✅ CRUD — Create, Read, Update, Delete
-- ✅ Relasi Database (One-to-Many)
-- ✅ Query Builder & Eloquent ORM
-- ✅ Dashboard Statistik
+- ✅ Relasi Database — One to Many
+- ✅ Eloquent ORM & Query Builder
+- ✅ Rich Text Editor Integration
+- ✅ Dashboard Statistik Real-time
 - ✅ UI Responsif dengan Bootstrap 5
 
 ---
 
-## 👨‍💻 Developer
+## 👨‍💻 Tim Pengembang
 
-**Izza Adian Ahmad**  
-Mahasiswa Teknologi Informasi yang sedang belajar pengembangan aplikasi web menggunakan Laravel.
+| Nama | NIM |
+|---|---|
+| Izza Adian Ahmad | 17240664 |
+| Chandra Adian Ahmad | 17240663 |
+| Rahmat Hidayat Ramadhan | 17240354 |
+| M. Azhari Nuswantoro | 17240565 |
+| Gabriella Zefanya | 17240609 |
+| Alvin Pranata | 17240625 |
+
+**Program Studi Teknologi Informasi**
+Fakultas Teknik dan Informatika — Universitas Bina Sarana Informatika
 
 ---
 
 ## 📄 Lisensi
 
-Project ini dibuat untuk kebutuhan pembelajaran dan pengembangan pribadi.
+Project ini dibuat untuk kebutuhan pembelajaran mata kuliah Web Programming 2.
+
+<div align="center">
+
+Made with 💜 using Laravel
+
+</div>
